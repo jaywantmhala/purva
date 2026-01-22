@@ -141,6 +141,78 @@ img {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Extra Large Desktop */
+@media (min-width: 1400px) {
+    .falling-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 18px;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .falling-image {
+        width: 130px;
+        height: 130px;
+        border-radius: 17px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .falling-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 15px;
+    }
+}
+
+/* Small Desktop/Large Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+    .falling-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 12px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 576px) and (max-width: 767px) {
+    .falling-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+    }
+}
+
+/* Large Mobile */
+@media (min-width: 480px) and (max-width: 575px) {
+    .falling-image {
+        width: 90px;
+        height: 90px;
+        border-radius: 9px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 479px) {
+    .falling-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+    .falling-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 7px;
+    }
+}
+
 @keyframes fallSlow {
     from {
         transform: translateY(-150px) translateX(0px) rotate(0deg) scale(0.9);

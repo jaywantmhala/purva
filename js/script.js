@@ -11,7 +11,25 @@ function createFallingImagesRain() {
     
     function getHeartPositions() {
         const positions = [];
-        const scale = 20;
+        let scale;
+        
+        if (window.innerWidth >= 1400) {
+            scale = 25;
+        } else if (window.innerWidth >= 1200) {
+            scale = 23;
+        } else if (window.innerWidth >= 992) {
+            scale = 20;
+        } else if (window.innerWidth >= 768) {
+            scale = 16;
+        } else if (window.innerWidth >= 576) {
+            scale = 12;
+        } else if (window.innerWidth >= 480) {
+            scale = 10;
+        } else if (window.innerWidth >= 360) {
+            scale = 8;
+        } else {
+            scale = 6;
+        }
         
         for (let t = 0; t < Math.PI * 2; t += 0.3) {
             const x = 16 * Math.pow(Math.sin(t), 3);
