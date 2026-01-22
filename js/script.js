@@ -2,6 +2,72 @@ var sf = new Snowflakes({
     color: "#ffd700",
     minSize: 20
 });
+
+function createFallingImagesRain() {
+    const images = [
+        'img/1.jpeg', 'img/2.jpeg', 'img/3.jpeg', 'img/4.jpeg', 'img/5.jpeg',
+        'img/6.jpeg', 'img/7.jpeg', 'img/8.jpeg', 'img/9.jpeg'
+    ];
+    
+    function getHeartPositions() {
+        const positions = [];
+        const scale = 20;
+        
+        for (let t = 0; t < Math.PI * 2; t += 0.3) {
+            const x = 16 * Math.pow(Math.sin(t), 3);
+            const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+            positions.push({
+                x: x * scale,
+                y: y * scale
+            });
+        }
+        
+        return positions;
+    }
+    
+    const heartPositions = getHeartPositions();
+    let imageIndex = 0;
+    let positionIndex = 0;
+    
+    function createFallingImage() {
+        const img = document.createElement('img');
+        img.src = images[imageIndex % images.length];
+        img.className = 'falling-image';
+        
+        const heartPos = heartPositions[positionIndex % heartPositions.length];
+        const side = Math.random() < 0.5 ? 'left' : 'right';
+        
+        let startX;
+        if (side === 'left') {
+            startX = Math.random() * (window.innerWidth / 2 - 200);
+        } else {
+            startX = (window.innerWidth / 2 + 200) + Math.random() * (window.innerWidth / 2 - 200);
+        }
+        
+        const finalX = window.innerWidth / 2 + heartPos.x;
+        const animationDuration = 15;
+        
+        img.style.left = startX + 'px';
+        img.style.animationDuration = animationDuration + 's';
+        img.style.setProperty('--final-x', (finalX - startX) + 'px');
+        
+        document.body.appendChild(img);
+        
+        img.addEventListener('animationend', () => {
+            img.remove();
+        });
+        
+        imageIndex++;
+        positionIndex++;
+    }
+    
+    for (let i = 0; i < 9; i++) {
+        setTimeout(() => {
+            createFallingImage();
+        }, i * 2000);
+    }
+}
+
 var url_string = window.location.href; //window.location.href
 var url = new URL(url_string);
 var c = url.searchParams.get("name");
@@ -20,12 +86,15 @@ $('#play').click(function () {
     }, 8000);
     var audio = $('.song')[0];
     audio.play();
-
+    
+    setTimeout(() => {
+        createFallingImagesRain();
+    }, 10000);
 });
 var typed = new Typed("#typed", {
     stringsElement: '#typed-strings',
     typeSpeed: 30,
-    backSpeed: 10,
+    backSpeed: 30,
     loop: true
 });
 var retina = window.devicePixelRatio,

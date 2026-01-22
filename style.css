@@ -127,3 +127,33 @@ img {
     position: absolute;
     padding-top: 250px;
 }
+
+.falling-image {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    pointer-events: none;
+    z-index: 1000;
+    animation: fallSlow linear infinite;
+    opacity: 0.9;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fallSlow {
+    from {
+        transform: translateY(-150px) translateX(0px) rotate(0deg) scale(0.9);
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.9;
+    }
+    95% {
+        opacity: 0.9;
+    }
+    to {
+        transform: translateY(calc(100vh + 150px)) translateX(var(--final-x, 0px)) rotate(360deg) scale(1.1);
+        opacity: 0;
+    }
+}
